@@ -2,19 +2,14 @@
 
 ## 使用
 
-从npm安装`ct-adc`
+从npm安装`ct-adc-page`
 ```
-npm install ct-adc
+npm install ct-adc-page
 ```
 在代码中引用
+
 ```
-import adc from 'ct-adc';
-Vue.use(adc)
-```
-或
-```
-import adc from 'ct-adc';
-import {Page} from 'ct-adc'
+import {Page} from 'ct-adc-page'
 Vue.component(Page.name,Page);
 ```
 ## 参数说明
