@@ -171,10 +171,14 @@
         methods: {
             jump(){
                 var inputNum = parseInt(this.jumpTo);
-                if (inputNum > this.pageNum) {
-                    inputNum = this.pageNum;
+                if(/^\d+$/.test(inputNum+'')){
+                    if (inputNum > this.pageNum) {
+                        inputNum = this.pageNum;
+                    }
+                    this.$emit('change-page', inputNum);
+                }else{
+                    this.$emit('change-page',this.currPage);
                 }
-                this.$emit('change-page', inputNum);
             },
             previous(){
                 if (this.currPage > 1) {
