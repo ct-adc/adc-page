@@ -11,7 +11,7 @@ npm install ct-adc-page
 在代码中引用
 
 ```
-import {Page} from 'ct-adc-page'
+import Page from 'ct-adc-page'
 Vue.component(Page.name,Page);
 ```
 ## 参数说明
