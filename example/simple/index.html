@@ -11,8 +11,9 @@
     <page :curr-page="currPage"
           :page-len="pageLen"
           :total-num="totalNum"
-          :form="form" @change-page="changePage"></page>
-    <button type="button" class="btn btn-default" @click="changePage(500)">change</button>
+          :form="form" @change-page="changePage" class="clearfix"></page>
+    <button type="button" class="btn btn-primary" @click="changePage(500)">翻到第500页</button>
+    <button type="button" class="btn btn-primary" @click="toggle">页码样式切换</button>
 </div>
 
 <script src="/asset/simple.bundle.js"></script>
