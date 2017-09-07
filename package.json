@@ -1,7 +1,7 @@
 {
   "name": "ct-adc-page",
   "description": "vue component-page",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "ruby",
   "private": false,
   "scripts": {
