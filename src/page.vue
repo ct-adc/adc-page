@@ -5,7 +5,7 @@
             第<strong>{{currPage}}</strong>/<strong>{{pageNum}}</strong>页
         </div>
         <div :class="{'pull-right':form}">
-            <ul class="pagination">
+            <ul class="pagination pagination-sm">
                 <li class="previous" :class="previousStatus" @click="previous"><a href="javascript:;">&laquo;</a></li>
 
                 <template v-for="i in pageList.firstStep">
