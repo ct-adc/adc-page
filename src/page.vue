@@ -1,11 +1,11 @@
 <template>
     <div v-if="visible">
-        <div class="form-group" style="float: left;" v-if="form">
+        <div class="form-group pull-left mt5" v-if="form">
             共<strong>{{totalNum}}</strong>条记录，
             第<strong>{{currPage}}</strong>/<strong>{{pageNum}}</strong>页
         </div>
-        <div :style="form ? {float:'right'} : {}">
-            <ul class="pagination">
+        <div :class="{'pull-right':form}">
+            <ul class="pagination pagination-sm">
                 <li class="previous" :class="previousStatus" @click="previous"><a href="javascript:;">&laquo;</a></li>
 
                 <template v-for="i in pageList.firstStep">
@@ -27,10 +27,10 @@
                 <li class="next" :class="nextStatus" @click="next"><a href="javascript:;">&raquo;</a></li>
             </ul>
 
-            <div style="display: inline-block;" class="d-pages-form form-inline ml10" v-if="form">
-                到第 <input class="d-pages-form-input form-control input-sm" style="width:60px;" type="number" v-model="jumpTo" min="1"> 页
-                <a class="d-pages-form-btn btn btn-sm btn-primary" href="javascript:;" @click="jump">确定</a>
-            </div>
+            <span class="form-inline ml10" v-if="form">
+                到第 <input class="form-control input-sm" style="width:60px;" type="number" v-model="jumpTo" min="1"> 页
+                <button type="button" class="btn btn-sm btn-primary" @click="jump">确定</button>
+            </span>
         </div>
     </div>
 </template>
@@ -213,6 +213,5 @@
                 this.jumpTo=newVal;
             }
         }
-
     }
 </script>
