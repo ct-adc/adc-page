@@ -19,6 +19,9 @@ new Vue({
         },
         toggle(){
             this.form = !this.form;
+        },
+        changeCurrPage(){
+            this.currPage=this.currPage+1;
         }
     }
 
