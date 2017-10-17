@@ -25,3 +25,12 @@ form | 是否显示跳转 | Boolean | false
 spage | 页面几页后省略 | Number | 5
 topPage | 省略号前显示页数 | Number | 1
 afterPage | 省略号后显示页数 | Number | 1
+
+## 方法说明
+
+### setPage
+
+参数: page 即要翻到的页码
+
+手动翻页
+

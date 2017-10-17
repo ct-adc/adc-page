@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>list</title>
-    <link href="http://static.uc108.com/cdn/bootstrap/3.3.7/css/custom/bootstrap.css" rel="stylesheet">
+    <link href="http://static.tcy365.com/cdn/bootstrap/3.3.7/custom/1.0.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div id="page">
@@ -13,6 +13,7 @@
           :form="form" @change-page="changePage" class="clearfix"></page>
     <button type="button" class="btn btn-primary" @click="changePage(500)">翻到第500页</button>
     <button type="button" class="btn btn-primary" @click="toggle">页码样式切换</button>
+    <button type="button" class="btn btn-primary" @click="changeCurrPage">外部修改页码</button>
 </div>
 
 <script src="/asset/simple.bundle.js"></script>

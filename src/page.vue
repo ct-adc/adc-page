@@ -9,20 +9,20 @@
                 <li class="previous" :class="previousStatus" @click="previous"><a href="javascript:;">&laquo;</a></li>
 
                 <template v-for="i in pageList.firstStep">
-                    <li @click="getPage(i)"><a href="javascript:;">{{i}}</a></li>
+                    <li @click="setPage(i)"><a href="javascript:;">{{i}}</a></li>
                 </template>
 
                 <li v-if="pageList.firstDot" class="disabled"><a href="javascript:;">...</a></li>
 
                 <template v-for="i in pageList.secondStep">
-                    <li v-if="i===currPage" class="active" @click="getPage(i)"><a href="javascript:;">{{i}}</a></li>
-                    <li v-else @click="getPage(i)"><a href="javascript:;">{{i}}</a></li>
+                    <li v-if="i===currPage" class="active" @click="setPage(i)"><a href="javascript:;">{{i}}</a></li>
+                    <li v-else @click="setPage(i)"><a href="javascript:;">{{i}}</a></li>
                 </template>
 
                 <li v-if="pageList.secondDot" class="disabled"><a href="javascript:;">...</a></li>
 
                 <template v-for="i in pageList.thirdStep">
-                    <li @click="getPage(i)"><a href="javascript:;">{{i}}</a></li>
+                    <li @click="setPage(i)"><a href="javascript:;">{{i}}</a></li>
                 </template>
                 <li class="next" :class="nextStatus" @click="next"><a href="javascript:;">&raquo;</a></li>
             </ul>
@@ -192,7 +192,14 @@
                     this.$emit('change-page', this.currPage + 1);
                 }
             },
-            getPage(page){
+            setPage(page){
+                page = parseInt(page);
+                if (page > this.pageNum) {
+                    page = this.pageNum;
+                }
+                if(page < 1){
+                    page = 1;
+                }
                 this.jumpTo=page;
                 this.$emit('change-page', page);
             }
@@ -200,18 +207,18 @@
         watch:{
             jumpTo(newVal){
                 this.jumpTo=(newVal+'').replace(/(^0|\D)/g,'');
-            },
-            currPage(newVal){
-                var originVal=newVal;
-                newVal = parseInt(newVal);
-                if (newVal > this.pageNum) {
-                    newVal = this.pageNum;
-                }
-                if(originVal!==newVal){
-                    this.$emit('change-page',newVal);
-                }
-                this.jumpTo=newVal;
             }
+            //currPage(newVal){
+            //    var originVal=newVal;
+            //    newVal = parseInt(newVal);
+            //    if (newVal > this.pageNum) {
+            //        newVal = this.pageNum;
+            //    }
+            //    if(originVal!==newVal){
+            //        this.$emit('change-page',newVal);
+            //    }
+            //    this.jumpTo=newVal;
+            //}
         }
     }
 </script>
