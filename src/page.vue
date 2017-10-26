@@ -207,18 +207,21 @@
         watch:{
             jumpTo(newVal){
                 this.jumpTo=(newVal+'').replace(/(^0|\D)/g,'');
+            },
+            currPage(newVal){
+                var originVal=newVal;
+                newVal = parseInt(newVal);
+                if (newVal > this.pageNum) {
+                    newVal = this.pageNum;
+                }
+                if(newVal < 1){
+                    newVal = 1;
+                }
+                //if(originVal!==newVal){
+                //    this.$emit('change-page',newVal);
+                //}
+                this.jumpTo=newVal;
             }
-            //currPage(newVal){
-            //    var originVal=newVal;
-            //    newVal = parseInt(newVal);
-            //    if (newVal > this.pageNum) {
-            //        newVal = this.pageNum;
-            //    }
-            //    if(originVal!==newVal){
-            //        this.$emit('change-page',newVal);
-            //    }
-            //    this.jumpTo=newVal;
-            //}
         }
     }
 </script>
