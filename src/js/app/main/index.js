@@ -2,10 +2,13 @@
  * @author rubyisapm
  */
 import Vue from 'vue';
-import Page from '../../index.js';
-Vue.component(Page.name, Page);
+import Page from 'main';
+
 new Vue({
-    el: '#page',
+    el: '#app',
+    components: {
+        Page
+    },
     data: {
         currPage: 1,
         pageLen: 20,
@@ -13,15 +16,15 @@ new Vue({
         form: true
     },
     methods: {
-        changePage(page){
+        changePage(page) {
             this.currPage = page;
-            console.log(page)
+            console.log(page);
         },
-        toggle(){
+        toggle() {
             this.form = !this.form;
         },
-        changeCurrPage(){
-            this.currPage=this.currPage+1;
+        changeCurrPage() {
+            this.currPage = this.currPage + 1;
         }
     }
 

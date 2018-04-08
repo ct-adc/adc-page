@@ -35,10 +35,13 @@
     </div>
 </template>
 
-<script type="es6">
-    function listArr(page, totle, len) {
-        var arr = [], cs, i, flag = true;
-        cs = parseInt(len / 2);
+<script>
+    const listArr = function(page, totle, len) {
+        const arr = [];
+        let i;
+        let flag = true;
+        const cs = parseInt(len / 2);
+
         if (flag && totle <= len) {
             for (i = 1; i <= totle; i++) {
                 arr.push(i);
@@ -63,9 +66,9 @@
             }
         }
         return arr;
-    }
+    };
 
-    export default{
+    export default {
         name: 'page',
         props: {
             currPage: {
@@ -104,124 +107,118 @@
                 default: 1
             }
         },
-        data(){
+        data() {
             return {
                 jumpTo: this.currPage
-            }
+            };
         },
         computed: {
-            pageNum(){
+            pageNum() {
                 return parseInt(Math.ceil(this.totalNum / this.pageLen));
             },
-            visible(){
+            visible() {
                 //页面是否可见
-                return this.pageNum>0;
+                return this.pageNum > 0;
             },
-            previousStatus(){
-                var num = parseInt(this.currPage);
+            previousStatus() {
+                const num = parseInt(this.currPage);
+
                 return num <= 1 ? 'disabled' : '';
             },
-            pageList(){
-                var pageNum = this.pageNum,
-                        spage = this.spage,
-                        num = parseInt(this.currPage),
-                        arr = listArr(num, pageNum, spage),
-                        len = arr.length,
-                        firstStep = [],
-                        firstDot,
-                        secondStep,
-                        secondDot,
-                        thirdStep = [],
-                        showPage;
+            pageList() {
+                const pageNum = this.pageNum;
+                const spage = this.spage;
+                const num = parseInt(this.currPage);
+                const arr = listArr(num, pageNum, spage);
+                const len = arr.length;
+                const firstStep = [];
+                const thirdStep = [];
+                let showPage;
+
                 if (arr[0] > 1) {
                     showPage = arr[0] <= this.topPage ? arr[0] - 1 : this.topPage;
-                    for (i = 1; i <= showPage; i++) {
+
+                    for (let i = 1; i <= showPage; i++) {
                         firstStep.push(i);
                     }
                 }
-
-                firstDot = arr[0] > this.topPage + 1;
-
-                secondStep = arr;
-
-                secondDot = arr[len - 1] < pageNum - this.afterPage;
+                const firstDot = arr[0] > this.topPage + 1;
+                const secondStep = arr;
+                const secondDot = arr[len - 1] < pageNum - this.afterPage;
 
                 if (arr[len - 1] < pageNum) {
                     showPage = arr[len - 1] >= pageNum - this.afterPage ? pageNum - arr[len - 1] : this.afterPage;
-                    for (var i = pageNum - showPage + 1; i <= pageNum; i++) {
+
+                    for (let i = pageNum - showPage + 1; i <= pageNum; i++) {
                         thirdStep.push(i);
                     }
                 }
-
                 return {
                     firstStep: firstStep,
                     firstDot: firstDot,
                     secondStep: secondStep,
                     secondDot: secondDot,
                     thirdStep: thirdStep
-                }
-
+                };
             },
-            nextStatus(){
-                var num = parseInt(this.currPage),
-                        pageNum = this.pageNum;
+            nextStatus() {
+                const num = parseInt(this.currPage);
+                const pageNum = this.pageNum;
+
                 return num >= pageNum ? 'disabled' : '';
             }
         },
         methods: {
-            jump(){
-                var inputNum = parseInt(this.jumpTo);
-                if(/^\d+$/.test(inputNum+'')){
+            jump() {
+                let inputNum = parseInt(this.jumpTo);
+
+                if (/^\d+$/.test(inputNum + '')) {
                     if (inputNum > this.pageNum) {
                         inputNum = this.pageNum;
                     }
                     this.$emit('change-page', inputNum);
-                }else{
-                    this.$emit('change-page',this.currPage);
+                } else {
+                    this.$emit('change-page', this.currPage);
                 }
             },
-            previous(){
+            previous() {
                 if (this.currPage > 1) {
-                    this.jumpTo=this.currPage - 1;
+                    this.jumpTo = this.currPage - 1;
                     this.$emit('change-page', this.currPage - 1);
                 }
             },
-            next(){
+            next() {
                 if (this.currPage < this.pageNum) {
-                    this.jumpTo=this.currPage + 1;
+                    this.jumpTo = this.currPage + 1;
                     this.$emit('change-page', this.currPage + 1);
                 }
             },
-            setPage(page){
+            setPage(page) {
                 page = parseInt(page);
                 if (page > this.pageNum) {
                     page = this.pageNum;
                 }
-                if(page < 1){
+                if (page < 1) {
                     page = 1;
                 }
-                this.jumpTo=page;
+                this.jumpTo = page;
                 this.$emit('change-page', page);
             }
         },
-        watch:{
-            jumpTo(newVal){
-                this.jumpTo=(newVal+'').replace(/(^0|\D)/g,'');
+        watch: {
+            jumpTo(newVal) {
+                this.jumpTo = (newVal + '').replace(/(^0|\D)/g, '');
             },
-            currPage(newVal){
-                var originVal=newVal;
+            currPage(newVal) {
                 newVal = parseInt(newVal);
                 if (newVal > this.pageNum) {
                     newVal = this.pageNum;
                 }
-                if(newVal < 1){
+                if (newVal < 1) {
                     newVal = 1;
                 }
-                //if(originVal!==newVal){
-                //    this.$emit('change-page',newVal);
-                //}
-                this.jumpTo=newVal;
+                this.jumpTo = newVal;
             }
         }
-    }
+    };
 </script>
